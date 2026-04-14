@@ -1,104 +1,172 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
+  const [open, setOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const [form, setForm] = useState({
+    name: "",
+    business: "",
+    phone: "",
+    message: "",
+    call: "Yes, call me",
+  });
+
+  const handleChange = (e: any) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    const text = `🔥 New Project Request
+
+👤 Name: ${form.name}
+🏢 Business: ${form.business}
+📞 Phone: ${form.phone}
+📩 Message: ${form.message}
+📲 Call Preference: ${form.call}`;
+
+    const url = `https://wa.me/917018796714?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+
+    setSent(true);
+    setOpen(false);
+
+    setTimeout(() => setSent(false), 3000);
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center bg-white px-6">
+    <section className="min-h-[85vh] flex items-center justify-center bg-white px-4 relative">
+
       <div className="max-w-4xl mx-auto text-center">
 
-        {/* 🔥 TOP BADGE */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="inline-block px-4 py-1 mb-6 text-sm rounded-full bg-gray-100 text-gray-700"
-        >
-          🚀 Introducing Hi-Tech Services
-        </motion.div>
+        {/* 🔥 SMALL BADGE */}
+        <p className="text-sm text-gray-500 mb-4">
+          🚀 Helping Local Businesses Go Online
+        </p>
 
-        {/* 🔥 MAIN HEADING */}
+        {/* 🔥 HEADING */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-bold leading-tight text-gray-600"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-700"
         >
           The Foundation for your <br />
-
-          {/* ✨ GRADIENT TEXT */}
-          <span className="
-            bg-gradient-to-r from-gray-600 via-gray-800 to-gray-950 
-            bg-[length:200%_200%]
-            bg-clip-text text-transparent
-
-            animate-gradient   /* mobile auto animation */
-
-            md:text-gray-900
-            md:hover:from-black md:hover:to-gray-600
-
-            transition-all duration-500
-          ">
+          <span className="bg-gradient-to-r from-gray-600 via-gray-800 to-black bg-clip-text text-transparent">
             Business Website
           </span>
         </motion.h1>
 
         {/* 🔥 SUBTEXT */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-6 text-gray-500 text-base md:text-lg max-w-2xl mx-auto"
-        >
-          Hi-Tech build high-converting websites for cafes & local businesses.
-          Clean design, WhatsApp integration, and real results.
-        </motion.p>
+        <p className="text-gray-500 mt-4 text-sm sm:text-base max-w-xl mx-auto">
+          Get your cafe, gym or local business online with a clean, fast &
+          mobile-friendly website that converts visitors into customers.
+        </p>
 
         {/* 🔥 BUTTONS */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
-        >
-          <button className="bg-black text-white px-6 py-3 rounded-xl font-medium hover:scale-105 transition shadow-md">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+
+          <button
+            onClick={() => setOpen(true)}
+            className="bg-black text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition"
+          >
             Start Project
           </button>
 
-          <button className="border border-gray-400 px-6 py-3 rounded-xl font-medium bg-green-500 hover:bg-green-600 transition">
-            Watsapp Business
-          </button>
-        </motion.div>
+          <a
+            href="https://wa.me/917018796714"
+            target="_blank"
+            className="px-6 py-3 rounded-lg font-medium border border-gray-300 bg-green-500 text-white hover:bg-green-600 transition"
+          >
+            WhatsApp
+          </a>
+        </div>
 
-        {/* 🔥 CARDS */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16"
-        >
-          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="font-semibold text-gray-800">Fast Websites</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Optimized for speed & performance
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="font-semibold text-gray-800">WhatsApp Orders</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Direct customer communication
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-5 shadow-sm hover:shadow-md transition">
-            <h3 className="font-semibold text-gray-800">SEO Ready</h3>
-            <p className="text-sm text-gray-500 mt-2">
-              Rank higher on Google
-            </p>
-          </div>
-        </motion.div>
-
+        {/* 🔥 TRUST LINE */}
+        <p className="text-xs text-gray-400 mt-4">
+          ⚡ Fast Delivery • 💬 WhatsApp Support • 💸 Affordable Pricing
+        </p>
       </div>
+
+      {/* 🔥 MODAL */}
+      {open && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 px-3">
+
+          <div className="bg-gray-900 text-white rounded-xl p-5 w-full max-w-md shadow-xl relative">
+
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-3 right-3 text-gray-400"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-xl font-semibold mb-3">
+              Start Your Project 🚀
+            </h2>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+
+              <input
+                name="name"
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="bg-gray-800 p-3 rounded-lg text-sm"
+                required
+              />
+
+              <input
+                name="business"
+                onChange={handleChange}
+                placeholder="Business Name"
+                className="bg-gray-800 p-3 rounded-lg text-sm"
+                required
+              />
+
+              <input
+                name="phone"
+                onChange={handleChange}
+                placeholder="Phone Number"
+                className="bg-gray-800 p-3 rounded-lg text-sm"
+                required
+              />
+
+              <textarea
+                name="message"
+                onChange={handleChange}
+                placeholder="Tell me about your business..."
+                className="bg-gray-800 p-3 rounded-lg text-sm"
+              />
+
+              <select
+                name="call"
+                onChange={handleChange}
+                className="bg-gray-800 p-3 rounded-lg text-sm"
+              >
+                <option>Yes, call me</option>
+                <option>No, WhatsApp only</option>
+              </select>
+
+              <button className="bg-white text-black py-3 rounded-lg font-medium">
+                Submit Request
+              </button>
+
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 🔥 SUCCESS POPUP */}
+      {sent && (
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black text-white px-6 py-3 rounded-lg shadow-lg text-sm">
+          ✅ Request Sent Successfully!
+        </div>
+      )}
     </section>
   );
 }
