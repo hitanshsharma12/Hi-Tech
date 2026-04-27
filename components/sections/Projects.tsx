@@ -11,12 +11,13 @@ const projects = [
     link: "https://khop-chah.vercel.app/",
     review: "⭐ 5 • Orders increased after website launch!",
   },
+ 
   {
-    title: "Modern Gym Website",
-    description: "Clean UI with membership plans & booking system.",
-    image: "/gym1.png",
-    link: "https://goldsgym.in/",
-    review: "⭐ 4.9 • Very professional design",
+    title: "Cafe 98 ",
+    description: "Cafe 98 is a modern, all‑in‑one cafe website featuring a sleek UI, seamless WhatsApp‑based ordering, and integrated booking systems for rooms, events, and tables. It streamlines the entire customer experience from ordering food to reserving spaces, all within one responsive platform.",
+    image: "/cafe98.png",
+    link: "https://cafe-98.vercel.app/",
+    review: "⭐ 5 • Very professional design",
   },
 ];
 
