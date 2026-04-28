@@ -31,7 +31,6 @@ export default function Hero() {
 📲 Call Preference: ${form.call}`;
 
     const url = `https://wa.me/917018796714?text=${encodeURIComponent(text)}`;
-
     window.open(url, "_blank");
 
     setSent(true);
@@ -85,10 +84,27 @@ export default function Hero() {
           >
             WhatsApp
           </a>
+
+          {/* 🔥 CLIENT HUB BUTTON */}
+          <a
+            href="/clienthub/login"
+            className="px-6 py-3 rounded-lg font-medium border border-gray-400 text-gray-700 hover:bg-gray-100 transition"
+          >
+            Client Hub
+          </a>
+
         </div>
 
-        {/* 🔥 TRUST LINE */}
+        {/* 🔥 CLIENT LINE (PRO TOUCH) */}
         <p className="text-xs text-gray-400 mt-4">
+          Already a client?{" "}
+          <a href="/clienthub/login" className="underline hover:text-black">
+            Access your dashboard →
+          </a>
+        </p>
+
+        {/* 🔥 TRUST LINE */}
+        <p className="text-xs text-gray-400 mt-2">
           ⚡ Fast Delivery • 💬 WhatsApp Support • 💸 Affordable Pricing
         </p>
       </div>
