@@ -19,6 +19,13 @@ const projects = [
     link: "https://cafe-98.vercel.app/",
     review: "⭐ 5 • Very professional design",
   },
+  {
+    title: "Sushnova Salon ",
+    description: "Sushnova is a premium salon website designed with a refined interface, effortless appointment booking, and a complete showcase of hair and beauty services. It delivers a smooth, high-end digital experience that reflects the elegance of the salon itself.",
+    image: "/salon.png",
+    link: "https://sushnova.vercel.app/",
+    review: "⭐ 5 • Customer Increased 3x",
+  },
 ];
 
 export default function Projects() {
