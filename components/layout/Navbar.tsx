@@ -1,11 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { FaWhatsapp, FaInstagram, FaLinkedin, FaDiscord, FaYoutube, FaEnvelope } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaLinkedin,
+  FaYoutube,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // ✅ hydration safe mount check
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // prevent mismatch
 
   return (
     <header className="w-full bg-white border-b sticky top-0 z-50">
@@ -21,6 +34,7 @@ export default function Navbar() {
 
           {/* Desktop Search */}
           <input
+            suppressHydrationWarning
             type="text"
             placeholder="Search..."
             className="hidden md:block border rounded-full px-4 py-1.5 text-sm w-44 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -32,6 +46,7 @@ export default function Navbar() {
             <a
               href="https://www.linkedin.com/in/hitansh-sharma-357911307"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaLinkedin size={20} className="hover:text-blue-600 transition" />
             </a>
@@ -39,30 +54,27 @@ export default function Navbar() {
             <a
               href="https://wa.me/917018796714"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaWhatsapp size={20} className="hover:text-green-500 transition" />
             </a>
 
-        
-
             <a
               href="https://www.youtube.com/@hitanshsharma7266"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FaYoutube size={20} className="hover:text-red-500 transition" />
             </a>
 
-            {/* 🔥 EMAIL (placeholder) */}
-            <a
-              href="mailto:your@email.com"
-            >
+            <a href="mailto:your@email.com">
               <FaEnvelope size={20} className="hover:text-gray-600 transition" />
             </a>
-
           </div>
 
           {/* 🔥 MOBILE MENU BUTTON */}
           <button
+            suppressHydrationWarning
             className="md:hidden"
             onClick={() => setOpen(!open)}
           >
@@ -73,7 +85,10 @@ export default function Navbar() {
 
       {/* 🔥 MOBILE MENU */}
       {open && (
-        <div className="md:hidden px-6 pb-6 bg-white border-t">
+        <div
+          suppressHydrationWarning
+          className="md:hidden px-6 pb-6 bg-white border-t"
+        >
           <input
             type="text"
             placeholder="Search..."

@@ -4,13 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const projects = [
-  {
-    title: "Khop-Chah HP10",
-    description: "Modern cafe website with WhatsApp ordering & smooth UI.",
-    image: "/cafe.png",
-    link: "https://khop-chah.vercel.app/",
-    review: "⭐ 5 • Orders increased after website launch!",
-  },
+  
  
   {
     title: "Cafe 98 ",
@@ -20,11 +14,25 @@ const projects = [
     review: "⭐ 5 • Very professional design",
   },
   {
+    title: "YumiGo Bakery ",
+    description: "YumiGo Bakery is a modern, all-in-one bakery website featuring a clean, premium UI, seamless WhatsApp-based ordering, and a fully customizable cake builder. It allows customers to design their cakes (flavour, size, shape, egg preference, add-ons, and photo cakes) and place instant orders directly via WhatsApp. The platform also includes smart delivery scheduling, pickup options, and real-time cart management, streamlining the entire customer experience—from browsing and customization to order confirmation—within one fully responsive and user-friendly interface.",
+    image: "/yumigo.png",
+    link: "https://yumigo-mocha.vercel.app/",
+    review: "⭐ 5 • Next Generation Ordering System",
+  },
+  {
     title: "Sushnova Salon ",
     description: "Sushnova is a premium salon website designed with a refined interface, effortless appointment booking, and a complete showcase of hair and beauty services. It delivers a smooth, high-end digital experience that reflects the elegance of the salon itself.",
     image: "/salon.png",
     link: "https://sushnova.vercel.app/",
     review: "⭐ 5 • Customer Increased 3x",
+  },
+  {
+    title: "Khop-Chah HP10",
+    description: "Modern cafe website with WhatsApp ordering & smooth UI.",
+    image: "/cafe.png",
+    link: "https://khop-chah.vercel.app/",
+    review: "⭐ 5 • Orders increased after website launch!",
   },
 ];
 

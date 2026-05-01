@@ -1,18 +1,44 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function ClientLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  const handleLogin = (e: any) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
 
-    // yahan baad me Firebase/Auth logic aayega
-    console.log(email, password);
+    try {
+      // 🔐 Firebase login
+      await signInWithEmailAndPassword(auth, email, password);
 
-    alert("Login system connect karna hai 🔥");
+      // 🔎 Firestore se user data fetch
+      const docRef = doc(db, "clients", email);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        alert("No user data found ❌");
+        return;
+      }
+
+      const data = docSnap.data();
+
+      // 🔥 ROLE BASED REDIRECT
+      if (data.role === "admin") {
+        router.push("/clienthub/admin");
+      } else {
+        router.push("/clienthub/dashboard");
+      }
+
+    } catch (err: any) {
+      alert("Login failed ❌ " + err.message);
+    }
   };
 
   return (
