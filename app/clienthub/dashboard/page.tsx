@@ -1,49 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function Dashboard() {
-  const [data, setData] = useState<any>(null);
+// Redirect to the main client hub page
+export default function DashboardRedirect() {
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const user = auth.currentUser;
-
-      if (!user) return;
-
-      const docRef = doc(db, "clients", user.email!);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        setData(docSnap.data());
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (!data) return <div className="text-white p-6">Loading...</div>;
+    router.replace("/clienthub");
+  }, [router]);
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
-      <h1 className="text-2xl font-bold mb-4">Client Dashboard 🚀</h1>
-
-      <div className="grid gap-4">
-
-        <div className="bg-gray-900 p-4 rounded-lg">
-          📊 Visitors: {data.visitors}
-        </div>
-
-        <div className="bg-gray-900 p-4 rounded-lg">
-          🌐 Website: {data.website}
-        </div>
-
-        <div className="bg-gray-900 p-4 rounded-lg">
-          📌 Status: {data.status}
-        </div>
-
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-muted-foreground">Redirecting to Client Hub...</p>
       </div>
     </div>
   );

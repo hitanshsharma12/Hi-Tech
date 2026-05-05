@@ -1,25 +1,21 @@
 import Hero from "@/components/sections/Hero";
 import Navbar from "@/components/layout/Navbar";
 import Services from "@/components/sections/Services";
-import Project from "@/components/sections/Projects";
+import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
 import Testimonials from "@/components/sections/Testimonials";
-import Footer from "@/components/layout/Footer"; // ✅ FIX
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <main className="bg-[#0B0F19] text-white overflow-x-hidden">
-      
+    <main className="bg-background text-foreground overflow-x-hidden">
       <Navbar />
-
-      {/* 🔥 HERO SECTION */}
       <Hero />
-
       <Services />
-      <Project />  
+      <About />
+      <Projects />
       <Testimonials />
-
-      <Footer /> {/* ✅ ADD HERE */}
-
+      <Footer />
     </main>
   );
 }
